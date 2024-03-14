@@ -1,0 +1,36 @@
+const words = ["baa", "abcd", "abca", "cab", "cad"];
+var output = [];
+let input = new Map();
+for(let x=0; x<words.length; x++){
+    for(let y=0; y<words[x].length; y++){
+        if(input.has(words[x][y])){
+            input.set(words[x][y],input.get(words[x][y])+1);
+        }
+        else{
+            input.set(words[x][y], 1);
+        }
+    }
+}
+console.log(input);
+
+for(let i=0; i<words.length-1; i++){
+    // console.log(1);
+    for( let j=0; j< Math.min(words[i].length, words[i+1].length); j++){
+        // console.log(2);
+        if(words[i][j] != words[i+1][j]){
+            // console.log(3);
+            
+                output.push([words[i][j], words[i+1][j]]);
+                break;
+        }
+        
+    }
+}
+console.log(output);
+var outputArray= output[0];
+for( let m =1; m< output.length; m++){
+    if(outputArray.includes(output[m][0]) ||  outputArray.includes(output[m][1])){
+        outputArray.splice(outputArray.indexOf(output[m][1]),0, outputArray.push(output[m][1]));
+    }
+}
+console.log(outputArray);
